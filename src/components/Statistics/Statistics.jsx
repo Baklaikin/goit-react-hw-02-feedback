@@ -1,4 +1,5 @@
 import s from "components/Statistics/Statistics.module.css";
+import Notification from "components/Notification/Notification";
 
 function Statistics({ good, neutral, bad, total, positiveFeedback }) {
   const renderFeedback = () => {
@@ -16,7 +17,7 @@ function Statistics({ good, neutral, bad, total, positiveFeedback }) {
     <div className={s.container}>
       <div className={s.values}>
         {total === 0 ? (
-          <h3 className={s.negativeTitle}>No feedback given</h3>
+          <Notification message="No feedback given" />
         ) : (
           renderFeedback()
         )}
