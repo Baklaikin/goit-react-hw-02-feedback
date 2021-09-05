@@ -1,6 +1,7 @@
-// import Buttons from "components/FeedbackButons/FeedbackButtons";
 import React from "react";
-import s from "components/FeedbackLogic/FeedbackLogic.module.css";
+import Statistics from "components/Statistics/Statistics";
+import FeedbackOptions from "components/FeedbackOptions/FeedbackOptions";
+import Section from "components/Section/Section";
 
 class Feedback extends React.Component {
   constructor({ options }) {
@@ -26,62 +27,38 @@ class Feedback extends React.Component {
 
   countTotalFeedback = (event) => {
     this.setState((prevState) => {
-      return { total: prevState.good + prevState.neutral + prevState.bad };
+      const { good, neutral, bad } = prevState;
+      return { total: good + neutral + bad };
     });
   };
 
   countPositiveFeedbackPercentage = (event) => {
     this.setState((prevState) => {
-      const positive =
-        ((prevState.good + prevState.neutral) /
-          (prevState.good + prevState.neutral + prevState.bad)) *
-        100;
+      const { good, neutral, bad } = prevState;
+      const positive = ((good + neutral) / (good + neutral + bad)) * 100;
       return { positiveFeedback: Math.floor(positive) };
     });
   };
 
-  renderFeedback = () => {
-    return (
-      <>
-        <p className={s.paragraph}>Good: {this.state.good}</p>
-        <p className={s.paragraph}>Neutral: {this.state.neutral}</p>
-        <p className={s.paragraph}>Bad: {this.state.bad}</p>
-        <p className={s.paragraph}>Total: {this.state.total}</p>
-        <p className={s.paragraph}>
-          {" "}
-          Positive feedback: {this.state.positiveFeedback}%
-        </p>
-      </>
-    );
-  };
-
   render() {
+    const { good, neutral, bad, total, positiveFeedback } = this.state;
     return (
       <>
-        <div className={s.wrapper}>
-          {this.options.map((option) => (
-            <button
-              key={option}
-              type="button"
-              name={option}
-              className={s.button}
-              onClick={this.onButtonClick}
-            >
-              {option}
-            </button>
-          ))}
-        </div>
-
-        <div className={s.container}>
-          <h2 className={s.title}>Statistics</h2>
-          <div className={s.values}>
-            {this.state.total === 0 ? (
-              <h3 className={s.negativeTitle}>Feedback never given</h3>
-            ) : (
-              this.renderFeedback()
-            )}
-          </div>
-        </div>
+        <Section title="Please leave feedback">
+          <FeedbackOptions
+            options={this.options}
+            onLeaveFeedback={this.onButtonClick}
+          />
+        </Section>
+        <Section title="Statistics">
+          <Statistics
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={total}
+            positiveFeedback={positiveFeedback}
+          />
+        </Section>
       </>
     );
   }
