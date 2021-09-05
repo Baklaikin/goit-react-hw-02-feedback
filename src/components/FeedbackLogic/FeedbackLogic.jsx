@@ -9,6 +9,8 @@ class Feedback extends React.Component {
       good: 0,
       neutral: 0,
       bad: 0,
+      total: 0,
+      positiveFeedback: 0,
     };
     this.options = options;
   }
@@ -38,6 +40,21 @@ class Feedback extends React.Component {
     });
   };
 
+  renderFeedback = () => {
+    return (
+      <>
+        <p className={s.paragraph}>Good: {this.state.good}</p>
+        <p className={s.paragraph}>Neutral: {this.state.neutral}</p>
+        <p className={s.paragraph}>Bad: {this.state.bad}</p>
+        <p className={s.paragraph}>Total:{this.state.total}</p>
+        <p className={s.paragraph}>
+          {" "}
+          Positive feedback:{this.state.positiveFeedback}%
+        </p>
+      </>
+    );
+  };
+
   render() {
     return (
       <>
@@ -58,14 +75,11 @@ class Feedback extends React.Component {
         <div className={s.container}>
           <h2 className={s.title}>Statistics</h2>
           <div className={s.values}>
-            <p className={s.paragraph}>Good: {this.state.good}</p>
-            <p className={s.paragraph}>Neutral: {this.state.neutral}</p>
-            <p className={s.paragraph}>Bad: {this.state.bad}</p>
-            <p className={s.paragraph}>Total:{this.state.total}</p>
-            <p className={s.paragraph}>
-              Positive feedback:{this.state.positiveFeedback}%
-            </p>
-            <p></p>
+            {this.state.total === 0 ? (
+              <h3 className={s.negativeTitle}>Feedback never given</h3>
+            ) : (
+              this.renderFeedback()
+            )}
           </div>
         </div>
       </>
