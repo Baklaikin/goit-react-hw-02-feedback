@@ -46,10 +46,10 @@ class Feedback extends React.Component {
         <p className={s.paragraph}>Good: {this.state.good}</p>
         <p className={s.paragraph}>Neutral: {this.state.neutral}</p>
         <p className={s.paragraph}>Bad: {this.state.bad}</p>
-        <p className={s.paragraph}>Total:{this.state.total}</p>
+        <p className={s.paragraph}>Total: {this.state.total}</p>
         <p className={s.paragraph}>
           {" "}
-          Positive feedback:{this.state.positiveFeedback}%
+          Positive feedback: {this.state.positiveFeedback}%
         </p>
       </>
     );
