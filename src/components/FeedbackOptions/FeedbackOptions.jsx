@@ -1,4 +1,5 @@
 import s from "components/FeedbackOptions/FeedbackOptions.module.css";
+import PropTypes from "prop-types";
 
 function FeedbackOptions({ options, onLeaveFeedback }) {
   return (
@@ -19,3 +20,8 @@ function FeedbackOptions({ options, onLeaveFeedback }) {
 }
 
 export default FeedbackOptions;
+
+FeedbackOptions.propTypes = {
+  key: PropTypes.string,
+  name: PropTypes.string,
+};
