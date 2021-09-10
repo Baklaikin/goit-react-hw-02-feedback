@@ -16,9 +16,8 @@ class Feedback extends React.Component {
     this.options = options;
   }
 
-  onButtonClick = (event) => {
+  onButtonClick = (item) => {
     this.setState((prevState) => {
-      const item = event.target.name.toLowerCase();
       return { [item]: prevState[item] + 1 };
     });
     this.countTotalFeedback();
@@ -46,6 +45,7 @@ class Feedback extends React.Component {
         <Section title="Please leave feedback">
           <FeedbackOptions
             options={this.options}
+            state={this.state}
             onLeaveFeedback={this.onButtonClick}
           />
         </Section>

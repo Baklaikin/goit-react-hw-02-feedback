@@ -1,7 +1,7 @@
 import s from "components/FeedbackOptions/FeedbackOptions.module.css";
 import PropTypes from "prop-types";
 
-function FeedbackOptions({ options, onLeaveFeedback }) {
+function FeedbackOptions({ options, onLeaveFeedback, state }) {
   return (
     <div className={s.wrapper}>
       {options.map((option) => (
@@ -10,7 +10,10 @@ function FeedbackOptions({ options, onLeaveFeedback }) {
           type="button"
           name={option}
           className={s.button}
-          onClick={onLeaveFeedback}
+          onClick={(e) => {
+            const item = e.target.name.toLowerCase();
+            onLeaveFeedback(item);
+          }}
         >
           {option}
         </button>
