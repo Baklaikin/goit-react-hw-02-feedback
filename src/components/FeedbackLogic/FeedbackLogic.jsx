@@ -25,23 +25,22 @@ class Feedback extends React.Component {
     this.countPositiveFeedbackPercentage();
   };
 
-  countTotalFeedback = (event) => {
-    this.setState((prevState) => {
-      const { good, neutral, bad } = prevState;
-      return { total: good + neutral + bad };
-    });
+  countTotalFeedback = () => {
+    const { good, neutral, bad } = this.state;
+    const total = good + neutral + bad;
+    return total;
   };
 
-  countPositiveFeedbackPercentage = (event) => {
-    this.setState((prevState) => {
-      const { good, neutral, bad } = prevState;
-      const positive = ((good + neutral) / (good + neutral + bad)) * 100;
-      return { positiveFeedback: Math.floor(positive) };
-    });
+  countPositiveFeedbackPercentage = () => {
+    const { good, neutral, bad } = this.state;
+    const positive = Math.floor(
+      ((good + neutral) / (good + neutral + bad)) * 100
+    );
+    return positive;
   };
 
   render() {
-    const { good, neutral, bad, total, positiveFeedback } = this.state;
+    const { good, neutral, bad } = this.state;
     return (
       <>
         <Section title="Please leave feedback">
@@ -55,8 +54,8 @@ class Feedback extends React.Component {
             good={good}
             neutral={neutral}
             bad={bad}
-            total={total}
-            positiveFeedback={positiveFeedback}
+            total={this.countTotalFeedback()}
+            positiveFeedback={this.countPositiveFeedbackPercentage()}
           />
         </Section>
       </>
