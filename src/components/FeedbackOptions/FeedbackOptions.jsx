@@ -1,7 +1,7 @@
 import s from "components/FeedbackOptions/FeedbackOptions.module.css";
 import PropTypes from "prop-types";
 
-function FeedbackOptions({ options, onLeaveFeedback, state }) {
+function FeedbackOptions({ options, onLeaveFeedback }) {
   return (
     <div className={s.wrapper}>
       {options.map((option) => (

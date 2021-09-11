@@ -10,8 +10,6 @@ class Feedback extends React.Component {
       good: 0,
       neutral: 0,
       bad: 0,
-      total: 0,
-      positiveFeedback: 0,
     };
     this.options = options;
   }
