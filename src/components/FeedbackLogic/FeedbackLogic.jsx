@@ -18,8 +18,6 @@ class Feedback extends React.Component {
     this.setState((prevState) => {
       return { [item]: prevState[item] + 1 };
     });
-    this.countTotalFeedback();
-    this.countPositiveFeedbackPercentage();
   };
 
   countTotalFeedback = () => {
